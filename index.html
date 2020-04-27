@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz da FB - Bio</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="start">
+        <div class="start-quiz">
+          <h2>Começar o QUIZ - BIO!</h2>
+          <img src="./images/icon.png" alt="Biologia" />
+        </div>
+      </div>
+      <div class="quiz" style="display: none;">
+        <div>
+          <div class="question-image">
+            <!--the question image is here-->
+          </div>
+        </div>
+        <div>
+          <div class="question-title">
+            <!--the question title is here-->
+          </div>
+          <hr />
+          <div class="choices">
+            <!--the alternatives answer-->
+            <div class="choice" id="A" onclick="verifyAnswer('A')"></div>
+            <div class="choice" id="B" onclick="verifyAnswer('B')"></div>
+            <div class="choice" id="C" onclick="verifyAnswer('C')"></div>
+            <div class="choice" id="D" onclick="verifyAnswer('D')"></div>
+            <div class="choice" id="E" onclick="verifyAnswer('E')"></div>
+          </div>
+        </div>
+        <div>
+          <div class="timer">
+            <!--the question time is here-->
+            <div class="counter"><!--from 0 to 15--></div>
+            <div class="btime-gauge">
+              <div class="time-gauge">
+                <!--the progress timer in green-->
+              </div>
+            </div>
+          </div>
+          <div class="progress">
+            <!--the progress -->
+          </div>
+        </div>
+      </div>
+      <div class="score-container" style="display: none;">
+        <!--the score shows when the game end-->
+      </div>
+      <ul class="squares"></ul>
+    </div>
+    <script src="./js/questions.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
