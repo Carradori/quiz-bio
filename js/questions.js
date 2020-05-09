@@ -101,5 +101,23 @@ var questions = [
     correct: "E",
     image: "images/08.jpg",
   },
+  {
+    id: "(BÔNUS - 20 SEGUNDOS",
+    isBonus: true,
+    title:
+      "Sobre o bioma que compreende o Cerrado brasileiro, é correto afirmar que:",
+    choiceA:
+      "É encontrado nas regiões Centro-Oeste e Sudeste, por conta das densas redes hidrográficas regionais.",
+    choiceB:
+      "Tem vegetação arbustiva, caducifólia com raízes profundas, galhos retorcidos e casca grossa.",
+    choiceC:
+      "Cobre 2 milhões de km2 do território nacional, sendo 80% inexplorados.",
+    choiceD:
+      "Apresenta duas espécies vegetais dominantes, o buritizeiro e o pequizeiro, não exploradas economicamente.",
+    choiceE:
+      "Tem solos de pouca profundidade o que facilita a infiltração das águas que corrigem a acidez dos solos.",
+    correct: "B",
+    image: "images/Bonus.jpg",
+  },
 ];
 //#endregion

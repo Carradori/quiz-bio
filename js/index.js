@@ -1,5 +1,6 @@
 //#region elements
 //elements
+const timer = document.querySelector(".timer");
 const quizContainer = document.querySelector(".quiz");
 const startContainer = document.querySelector(".start");
 const btnStart = document.querySelector(".start-quiz");
@@ -23,13 +24,14 @@ const scoreContainer = document.querySelector(".score-container");
 //the game variables
 let questionNow = 0;
 let count = 0;
-let questionTimer = 45; //30 seconds per question
+let questionTimer = 45; //45 seconds per question
 let gaugeWidth = 150; //150px
 let progressGauge = gaugeWidth / questionTimer;
 let questionLeft = questions.length - 1;
 let score = 0;
 let correctAnswer = 0;
 let TIMER;
+let bonusCorrect = "";
 
 btnStart.addEventListener("click", () => {
   document.body.style.backgroundImage = "none";
@@ -61,6 +63,11 @@ function renderCircles() {
 
 //set the timer
 function renderTimer() {
+  if (questionNow == questionLeft) {
+    timer.style.display = "none";
+    progress.style.display = "none";
+    questionTimer = 20;
+  }
   if (count <= questionTimer) {
     counter.innerHTML = `${count}s`;
     gauge.style.width = `${count * progressGauge}px`;
@@ -81,6 +88,11 @@ function renderTimer() {
 }
 //check if the answer is correct
 function verifyAnswer(answer) {
+  if (questionNow == questionLeft) {
+    if (answer == questions[questionNow].correct) {
+      bonusCorrect = "Boa!!! Você acertou a questão bonus. Parabéns!";
+    }
+  }
   if (answer == questions[questionNow].correct) {
     answerCorrect();
     correctAnswer++;
@@ -107,23 +119,28 @@ function renderScore() {
 
   if (scorePerCent >= 80) {
     img = "./images/5.png";
-    uau = "Parabéns, estou orgulhoso de você: ";
+    uau = "Parabéns, estou orgulhoso de você! ";
   } else if (scorePerCent >= 60) {
     img = "./images/4.png";
-    uau = "Nada mal, gostei de ver: ";
+    uau = "Nada mal, gostei de ver! ";
   } else if (scorePerCent >= 40) {
     img = "./images/3.png";
-    uau = "Éeeee... Você pode melhorar: ";
+    uau = "Éeeee... Você pode melhorar! ";
   } else if (scorePerCent >= 20) {
     img = "./images/2.png";
-    uau = "Ok, talvez a Katia te chame para uma conversa: ";
+    uau = "Ok, talvez a Katia te chame para uma conversa! ";
   } else {
     img = "./images/1.png";
-    uau = "Finga que você não fez esse teste e continue o que estava fazendo: ";
+    uau = "Finga que você não fez esse teste e continue o que estava fazendo! ";
   }
   scoreContainer.innerHTML = `<img src="${img}" />`;
   scoreContainer.innerHTML += `<p>Você acertou ${correctAnswer} de ${questions.length} questões`;
-  scoreContainer.innerHTML += `<p>${uau}${scorePerCent}% de acertos</p>`;
+  if (bonusCorrect.length) {
+    scoreContainer.innerHTML += `<p>${bonusCorrect}</p>`;
+  }
+  scoreContainer.innerHTML += `<p>${uau}${scorePerCent}% ${
+    !!bonusCorrect ? "considere mais 20% (acertou a bonus)" : ""
+  } de acerto</p>`;
   scoreContainer.innerHTML += `<button class="btn-close" onclick='closeAll()'>Fechar</button>`;
 }
 
@@ -138,7 +155,8 @@ function answerCorrect() {
 function closeAll() {
   window.location.reload();
 }
-/*squares*/
+//#region squares
+/*squares in the page*/
 const ulSquares = document.querySelector("ul.squares");
 for (let i = 0; i < 11; i++) {
   const li = document.createElement("li");
@@ -159,3 +177,4 @@ for (let i = 0; i < 11; i++) {
   li.style.animationTimingFunction = `cubic-bezier(${Math.random},${Math.random},${Math.random})`;
   ulSquares.appendChild(li);
 }
+//#endregion
